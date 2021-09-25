@@ -13,9 +13,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.3
-  pdf: ^3.6.0
-  path_provider: ^2.0.5
-  open_document: ^1.0.3
+
+  ## TODO 1: Install Dependency pdf
+  ## TODO 2: Install Dependency path_provider (only for flutter)
+  ## TODO 3: Install Dependency open_document
 
 dev_dependencies:
   flutter_test:

@@ -41,7 +41,6 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-    <true/>
+	<!-- TODO 4: Add <key>LSSupportsOpeningDocumentsInPlace</key> <true/> (only for ios) -->
 </dict>
 </plist>
