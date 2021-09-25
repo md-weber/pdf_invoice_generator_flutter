@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
     Product("Hammer", 26.43, 19),
     Product("Hamburger", 5.99, 7),
   ];
+  int number = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         child: Column(
                           children: [
-                            Text("Price: ${currentProduct.price.toStringAsFixed(2)}"),
+                            Text("Price: ${currentProduct.price.toStringAsFixed(2)} €"),
                             Text("VAT ${currentProduct.vatInPercent.toStringAsFixed(0)} %")
                           ],
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,16 +102,17 @@ class _HomePageState extends State<HomePage> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [const Text("VAT"), Text(getVat() ?? "0")],
+              children: [const Text("VAT"), Text("${getVat()} €")],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [const Text("Total"), Text(getTotal() ?? "0")],
+              children: [const Text("Total"), Text("${getTotal()} €")],
             ),
             ElevatedButton(
               onPressed: () async {
                 final data = await service.createInvoice(products);
-                service.savePdfFile("example", data);
+                service.savePdfFile("invoice_$number", data);
+                number++;
               },
               child: const Text("Create Invoice"),
             ),
