@@ -152,7 +152,6 @@ class PdfInvoiceService {
   Future<void> savePdfFile(String fileName, Uint8List byteList) async {
     final output = await getTemporaryDirectory();
     var filePath = "${output.path}/$fileName.pdf";
-    print(filePath);
     final file = File(filePath);
     await file.writeAsBytes(byteList);
     await OpenDocument.openDocument(filePath: filePath);
