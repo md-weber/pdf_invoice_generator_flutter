@@ -43,5 +43,7 @@
 	<false/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
     <true/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 </dict>
 </plist>
