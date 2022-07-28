@@ -70,14 +70,17 @@ class PdfInvoiceService {
         "${(double.parse(getSubTotal(soldProducts)) + double.parse(getVatTotal(soldProducts))).toStringAsFixed(2)} EUR",
       )
     ];
-    final image = (await rootBundle.load("assets/flutter_explained_logo.jpg")).buffer.asUint8List();
+    final image = (await rootBundle.load("assets/flutter_explained_logo.jpg"))
+        .buffer
+        .asUint8List();
     pdf.addPage(
       pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           return pw.Column(
             children: [
-              pw.Image(pw.MemoryImage(image), width: 150, height: 150, fit: pw.BoxFit.cover),
+              pw.Image(pw.MemoryImage(image),
+                  width: 150, height: 150, fit: pw.BoxFit.cover),
               pw.Row(
                 mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                 children: [
@@ -125,11 +128,20 @@ class PdfInvoiceService {
           for (var element in elements)
             pw.Row(
               children: [
-                pw.Expanded(child: pw.Text(element.itemName, textAlign: pw.TextAlign.left)),
-                pw.Expanded(child: pw.Text(element.itemPrice, textAlign: pw.TextAlign.right)),
-                pw.Expanded(child: pw.Text(element.amount, textAlign: pw.TextAlign.right)),
-                pw.Expanded(child: pw.Text(element.total, textAlign: pw.TextAlign.right)),
-                pw.Expanded(child: pw.Text(element.vat, textAlign: pw.TextAlign.right)),
+                pw.Expanded(
+                    child: pw.Text(element.itemName,
+                        textAlign: pw.TextAlign.left)),
+                pw.Expanded(
+                    child: pw.Text(element.itemPrice,
+                        textAlign: pw.TextAlign.right)),
+                pw.Expanded(
+                    child:
+                        pw.Text(element.amount, textAlign: pw.TextAlign.right)),
+                pw.Expanded(
+                    child:
+                        pw.Text(element.total, textAlign: pw.TextAlign.right)),
+                pw.Expanded(
+                    child: pw.Text(element.vat, textAlign: pw.TextAlign.right)),
               ],
             )
         ],
@@ -147,7 +159,8 @@ class PdfInvoiceService {
 
   String getSubTotal(List<Product> products) {
     return products
-        .fold(0.0, (double prev, element) => prev + (element.amount * element.price))
+        .fold(0.0,
+            (double prev, element) => prev + (element.amount * element.price))
         .toStringAsFixed(2);
   }
 
@@ -155,7 +168,8 @@ class PdfInvoiceService {
     return products
         .fold(
           0.0,
-          (double prev, next) => prev + ((next.price / 100 * next.vatInPercent) * next.amount),
+          (double prev, next) =>
+              prev + ((next.price / 100 * next.vatInPercent) * next.amount),
         )
         .toStringAsFixed(2);
   }
